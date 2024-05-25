@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Palette des Sous-Titres</title>
+
+		<!-- Mobile Specific Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/normalize.css" />
+		<link rel="stylesheet" href="css/skeleton-auto.css" />
+		<link rel="stylesheet" href="css/brands.css" />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="images/icone-discord.png" />
+		<style>
+			.color-block img {
+				display: block;
+				margin: 0 auto 10px;
+				width: 24px;
+				height: 24px;
+			}
+			.search-container {
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="column" style="margin-top: 10%"></div>
+			<div class="container">
+				<!-- Title -->
+				<h2 role="heading">
+					Palette des Sous-Titres :
+					<br />
+					Qui se Cache Derrière Chaque Couleur sur Instagram ?
+				</h2>
+
+				<!-- Short Bio -->
+				<p>
+					Si je t'ai directement envoyé ici, c'est que j'aimerai t'y ajouter ! <br />
+          Envoie-moi un message avec l'emoji de la couleur que tu souhaites et je te rajouterai à la liste !
+				</p>
+
+				<!-- Search Bar -->
+				<div class="search-container">
+					<input
+						type="text"
+						id="search-input"
+						placeholder="Quelqu'un en tête ?"
+					/>
+				</div>
+
+				<div id="color-blocks"></div>
+			</div>
+		</div>
+
+		<script>
+			const colors = [
+				{ name: '❄ Adan_ea', hex: '#B02020', rgb: '176, 32, 32' },
+				{ name: '😶‍🌫️ Jacodok', hex: '#A6AC24', rgb: '166, 172, 36' },
+				{ name: '❄ Maxharance', hex: '#9400D3', rgb: '148, 0, 211' },
+				{ name: '❄ Mayo_n_ez', hex: '#008B8B', rgb: '0, 139, 139' },
+				{ name: '❄ Nalhaak', hex: '#D93F77', rgb: '217, 63, 119' },
+				{
+					name: '🪖 Usishiiire',
+					url: 'https://www.twitch.tv/usishiiire',
+					hex: '#C200FA',
+					rgb: '194, 0, 250'
+				},
+				{ name: '🦝 Zennf', hex: '#1F8B4C', rgb: '31, 139, 76' }
+			];
+
+			function createColorBlock(color) {
+				const block = document.createElement(color.url ? 'a' : 'div');
+				if (color.url) {
+					block.href = color.url;
+					block.target = '_blank';
+
+					const img = document.createElement('img');
+					img.src = 'images/icons/twitch.svg';
+					img.alt = 'Twitch Logo';
+					img.setAttribute('aria-hidden', 'true');
+					block.appendChild(img);
+				}
+
+				const nameDiv = document.createElement('div');
+				nameDiv.textContent = color.name;
+				const hexDiv = document.createElement('div');
+				hexDiv.textContent = `HEX: ${color.hex}`;
+				const rgbDiv = document.createElement('div');
+				rgbDiv.textContent = `RGB: ${color.rgb}`;
+
+				block.className = 'button';
+				block.style.backgroundColor = color.hex;
+				block.style.color = '#ffffff';
+				block.style.cursor = color.url ? 'pointer' : 'default';
+
+				block.appendChild(nameDiv);
+				block.appendChild(hexDiv);
+				block.appendChild(rgbDiv);
+
+				return block;
+			}
+
+			function generateColorBlocks(filter = '') {
+				const container = document.getElementById('color-blocks');
+				container.innerHTML = '';
+				const filteredColors = colors.filter((color) =>
+					color.name.toLowerCase().includes(filter.toLowerCase())
+				);
+				filteredColors.forEach((color) =>
+					container.appendChild(createColorBlock(color))
+				);
+			}
+
+			document
+				.getElementById('search-input')
+				.addEventListener('input', function (e) {
+					generateColorBlocks(e.target.value);
+				});
+
+			generateColorBlocks();
+		</script>
+	</body>
+</html>
