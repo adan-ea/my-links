@@ -25,6 +25,9 @@
 			.search-container {
 				margin-bottom: 20px;
 			}
+			.desc {
+				font-size: smaller;
+			}
 		</style>
 	</head>
 	<body>
@@ -32,11 +35,8 @@
 			<div class="column" style="margin-top: 10%"></div>
 			<div class="container">
 				<!-- Title -->
-				<h2 role="heading">
-					Palette des Sous-Titres
-					<br />
-					Qui se Cache Derrière Chaque Couleur
-				</h2>
+				<h2 role="heading">Palette des Sous-Titres</h2>
+				<h3 role="heading">Qui se Cache Derrière Chaque Couleur</h3>
 
 				<!-- Search Bar -->
 				<div class="search-container">
@@ -62,7 +62,7 @@
 		<script>
 			const colors = [
 				{
-					name: '❄ Adan_ea',
+					name: '🦦 Adan_ea',
 					url: 'https://www.twitch.tv/adan_ea',
 					hex: '#B02020',
 					rgb: '176, 32, 32'
@@ -93,7 +93,7 @@
 
 					const img = document.createElement('img');
 					img.src = 'images/icons/twitch.svg';
-					img.alt = 'Twitch Logo';
+					img.alt = '';
 					img.setAttribute('aria-hidden', 'true');
 					block.appendChild(img);
 				}
@@ -102,8 +102,10 @@
 				nameDiv.textContent = color.name;
 				const hexDiv = document.createElement('div');
 				hexDiv.textContent = `HEX: ${color.hex}`;
+				hexDiv.className = 'desc';
 				const rgbDiv = document.createElement('div');
 				rgbDiv.textContent = `RGB: ${color.rgb}`;
+				rgbDiv.className = 'desc';
 
 				block.className = 'button';
 				block.style.backgroundColor = color.hex;
