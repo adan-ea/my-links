@@ -66,6 +66,10 @@ button:hover,
   filter: brightness(90%);
 }
 
+.button.button-small {
+  width: 134px;
+}
+
 /* Brand Icons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -132,17 +136,6 @@ button:hover,
 
 .button.button-instagram:hover,
 .button.button-instagram:focus {
-  filter: brightness(90%);
-}
-
-/* OnlyFans */
-.button.button-onlyfans {
-  color: #ffffff;
-  background-color: #00AEEF;
-}
-
-.button.button-onlyfans:hover,
-.button.button-onlyfans:focus {
   filter: brightness(90%);
 }
 
