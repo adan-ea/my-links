@@ -1,0 +1,19 @@
+name: Docker Image CI
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag adanea/my-links:latest
+
+      - name: docker login
+        run: echo '${{ secrets.DOCKER_TOKEN }}' | docker login --username adanea --password-stdin
+
+      - name: docker push
+        run: docker push adanea/my-links:latest
