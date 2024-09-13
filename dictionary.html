@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Le Petit Adan</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/normalize.css" />
+		<link rel="stylesheet" href="css/skeleton-auto.css" />
+		<link rel="stylesheet" href="css/brands.css" />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="images/icone-discord.png" />
+		<style>
+			.entry {
+				margin-bottom: 20px;
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				background-color: #f9f9f9;
+				text-align: justify;
+			}
+			.entry h3 {
+				margin: 0;
+				font-size: 1.5em;
+			}
+			.entry p {
+				margin: 5px 0;
+				font-size: 1em;
+			}
+			.search-container {
+				margin: 20px 0;
+			}
+			.desc {
+				font-size: smaller;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="container">
+				<!-- Title -->
+				<h2>Dictionnaire Le Petit Adan</h2>
+
+				<div id="add-entry">
+					Explore les termes inventés par la communauté, et
+					soigneusement définis par moi-même ! Pour ajouter un mot à
+					cette liste, rejoins un de mes lives et réclame la
+					récompense "Le Petit Adan" avec ta création originale !
+				</div>
+				<!-- Search Bar -->
+				<div class="search-container">
+					<input
+						type="text"
+						id="search-input"
+						placeholder="Rechercher un terme..."
+					/>
+				</div>
+
+				<!-- Dictionary Entries -->
+				<div id="dictionary-entries"></div>
+			</div>
+		</div>
+
+		<script>
+			const dictionary = [
+				{
+					term: 'Papouzayer',
+					type: 'verbe',
+					definitions: [
+						"Admirer la note de dégoût et de dépit qu'une situation nous procure",
+						"Transcrire le mépris envers une œuvre au travers d'une pseudo-reproduction grotesque et dénigrante"
+					],
+					example: 'Je papouzaye cette œuvre',
+					creator: 'Zennf_'
+				}
+			];
+
+			function createEntry(entry) {
+				const entryDiv = document.createElement('div');
+				entryDiv.className = 'entry';
+
+				// Titre du terme
+				const termTitle = document.createElement('h3');
+				termTitle.textContent = `${entry.term}`;
+
+				// Type du terme
+				const typeTitle = document.createElement('p');
+				typeTitle.textContent = entry.type;
+
+				// Liste des définitions
+				const definitionsList = document.createElement('ol');
+				entry.definitions.forEach((definition, index) => {
+					const listItem = document.createElement('li');
+					listItem.textContent = definition;
+					definitionsList.appendChild(listItem);
+				});
+
+				// Exemple
+				const exampleParagraph = document.createElement('p');
+				exampleParagraph.textContent = `Exemple : ${entry.example}`;
+
+				// Créateur
+				const creatorParagraph = document.createElement('p');
+				creatorParagraph.textContent = `Créateur : ${entry.creator}`;
+
+				// Ajout des éléments à l'entrée
+				entryDiv.appendChild(termTitle);
+				entryDiv.appendChild(typeTitle);
+				entryDiv.appendChild(definitionsList);
+				entryDiv.appendChild(exampleParagraph);
+				entryDiv.appendChild(creatorParagraph);
+
+				return entryDiv;
+			}
+
+			const container = document.getElementById('dictionary-entries');
+			dictionary.forEach((entry) => {
+				container.appendChild(createEntry(entry));
+			});
+
+			function generateDictionaryEntries(filter = '') {
+				const container = document.getElementById('dictionary-entries');
+				container.innerHTML = '';
+
+				const filteredEntries = dictionary.filter((entry) =>
+					entry.term.toLowerCase().includes(filter.toLowerCase())
+				);
+
+				filteredEntries.forEach((entry) =>
+					container.appendChild(createEntry(entry))
+				);
+			}
+
+			document
+				.getElementById('search-input')
+				.addEventListener('input', function (e) {
+					generateDictionaryEntries(e.target.value);
+				});
+
+			generateDictionaryEntries();
+		</script>
+	</body>
+</html>
