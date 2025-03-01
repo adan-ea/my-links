@@ -43,11 +43,20 @@
         <h2 role="heading">Palette des Sous-Titres</h2>
         <h3 role="heading">Qui se Cache Derrière Chaque Couleur</h3>
 
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Quelqu'un en tête ?"
+          />
+        </div>
+
         <div id="etre-ajoute" style="display: none">
           Coucou !<br />
           Si tu vois ce message, c'est que j'aimerais t'ajouter à cette liste
           !<br />
-          Envoie-moi un message avec l'emoji et
+          Envoie-moi un MP avec l'emoji et
           <a
             href="https://duckduckgo.com/?t=ffab&q=color+picker&ia=answer"
             target="_blank"
@@ -62,15 +71,6 @@
           souci, dis-le-moi !
         </div>
 
-        <!-- Search Bar -->
-        <div class="search-container">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Quelqu'un en tête ?"
-          />
-        </div>
-
         <div id="color-blocks"></div>
       </div>
     </div>
@@ -83,13 +83,15 @@
           hex: "#B02020",
           rgb: "176, 32, 32",
         },
+        { name: "❄ Cryofreeze", hex: "#A68EE6", rgb: "166, 142, 230" },
         { name: "❗ Dovino", hex: "#CC5500", rgb: "204, 85, 0" },
-        { name: "😾 enyaa", hex: "#900c3f", rgb: "144, 12, 63" },
+        { name: "😾 enyaa", hex: "#900C3F", rgb: "144, 12, 63" },
         { name: "😶‍🌫️ Jacodok", hex: "#A6AC24", rgb: "166, 172, 36" },
+        { name: "🐈 Keya Shiro", hex: "#33367F", rgb: "51, 54, 127" },
         {
           name: "🐺 LeMondeDLaure",
           url: "https://www.twitch.tv/lemondedlaure",
-          hex: "#3de50f",
+          hex: "#3DE50F",
           rgb: "61, 229, 15",
         },
         { name: "❄ Maxharance", hex: "#9400D3", rgb: "148, 0, 211" },
@@ -100,6 +102,12 @@
           rgb: "0, 139, 139",
         },
         { name: "❄ Nalhaak", hex: "#D93F77", rgb: "217, 63, 119" },
+        {
+          name: "❄ Subbarath",
+          url: "https://www.twitch.tv/subbarath",
+          hex: "#40E0D0",
+          rgb: "64, 224, 208",
+        },
         {
           name: "🪖 Usishiiire",
           url: "https://www.twitch.tv/usishiiire",
@@ -117,7 +125,7 @@
 
           const img = document.createElement("img");
           img.src = "images/icons/twitch.svg";
-          img.alt = "";
+          img.alt = "twitch icon";
           img.setAttribute("aria-hidden", "true");
           block.appendChild(img);
         }
